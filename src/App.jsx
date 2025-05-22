@@ -23,22 +23,12 @@ export const App = () => {
   return (
     <div className="section">
       <h1 className="title">Selected tab is {element.title}</h1>
-      <div data-cy="TabsComponent">
-        <div className="tabs is-boxed">
-          <ul>
-            <Tabs
-              tabs={tabs}
-              activeTabId={activeId}
-              onTabSelected={(id) => setActiveId(id)}
-            />
-          </ul>
-        </div>
-
-        <div className="block" data-cy="TabContent">
-          { element.content}
-        </div>
-      
-      </div>
+      <Tabs
+        tabs={tabs}
+        activeTabId={activeId}
+        onTabSelected={id => setActiveId(id)}
+        getTabById={id => getTab(id) }
+      />
     </div>
   );
 };
