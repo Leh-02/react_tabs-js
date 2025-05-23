@@ -1,10 +1,13 @@
-export const Tabs = ({ tabs, activeTabId, onTabSelected, getTabById }) => (
-  <div data-cy="TabsComponent">
+export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
+ const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
+
+  return (
+      <div data-cy="TabsComponent">
     <div className="tabs is-boxed">
       <ul>
         {tabs.map(tab => (
             <li
-              className={tab.id === activeTabId ? 'is-active' : ''}
+              className={tab.id  === activeTabId ? 'is-active' : ''}
               data-cy="Tab"
               onClick={() => {
                 if (tab.id !== activeTabId) {
@@ -21,8 +24,8 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected, getTabById }) => (
     </div>
     
       <div className="block" data-cy="TabContent">
-       {getTabById(activeTabId).content}
+       {activeTab.content}
       </div>
   </div>
-);
-
+  );
+};
